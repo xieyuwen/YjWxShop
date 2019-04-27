@@ -8,6 +8,10 @@
   <artifactId>yj-common</artifactId>
    <!-- 工具类工程: 1,抽取公共坐标 2,存放工具类 -->
   <dependencies>
+ 		<dependency>
+		    <groupId>com.thoughtworks.xstream</groupId>
+		    <artifactId>xstream</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
