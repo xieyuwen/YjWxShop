@@ -7,8 +7,8 @@
 			<property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
 			<property name="suppressDate" value="false" /> <!-- 是否生成注释代时间戳 -->
 		</commentGenerator>
-		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/yjshop"
-			userId="root" password="" />
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://106.12.219.106:3306/YjWxShop"
+			userId="root" password="123456" />
  
 		<!-- targetPackage是目标包名, targetProject是包所在的位置 -->
 		<!-- javaModelGenerator生成的是实体类, sqlMapGenerator生成的是映射文件, javaClientGenerator生成的是dao -->
@@ -17,6 +17,22 @@
 		<javaClientGenerator targetPackage="com.yj.db.dao" targetProject="src/main/java" type="XMLMAPPER" />
 		<!-- domainObjectName是表对应的实体类名, tableName是对应的表名 -->
 		<!-- table可以配置多个,enable*几个参数是为了自动生成一些额外的sql操作,可以关闭 -->
-		<table tableName="tbl_man_user"></table>
+		<table tableName="TBL_MAN_ROLE"></table>
+		<table tableName="TBL_MAN_USER"></table>
+		<table tableName="TBL_MAN_USER_ROLE"></table>
+		<table tableName="TBL_USER_INTO"></table>
+		<table tableName="YJ_BUSINESS_COMPANY_INFO"></table>
+		<table tableName="YJ_MAN_BROADCAST_INFO"></table>
+		<table tableName="YJ_MAN_BUY_CAR_INFO"></table>
+		<table tableName="YJ_MAN_COMPANY_INFO"></table>
+		<table tableName="YJ_MAN_DIRECTORY_INFO"></table>
+		<table tableName="YJ_MAN_EWM_INFO"></table>
+		<table tableName="YJ_MAN_GOODS_INFO"></table>
+		<table tableName="YJ_MAN_MENU"></table>
+		<table tableName="YJ_MAN_ORDER_INFO"></table>
+		<table tableName="YJ_MAN_PRODUCT_DETAIL_INFO"></table>
+		<table tableName="YJ_MAN_PRODUCT_INFO"></table>
+		<table tableName="YJ_MAN_PRODUCT_MODEL"></table>
+		<table tableName="YJ_MAN_ROLE_MENU"></table>
 	</context>
 </generatorConfiguration>

@@ -11,29 +11,25 @@ public class TblManUser implements Serializable{
 
 	private Long id;
 
-    private String username;
+    private String userName;
 
-    private String password;
+    private String passWord;
 
     private String phone;
 
     private String email;
 
-    private Date created;
+    private Date createdTime;
 
-    private Date updated;
+    private Date updatedTime;
 
     private String name;
 
     private String status;
 
-    private String qq;
-
     private String sex;
 
-    private Date birthday;
-
-    private Date lastLoginTime;
+    private String remark;
 
     public Long getId() {
         return id;
@@ -43,20 +39,20 @@ public class TblManUser implements Serializable{
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPassWord() {
+        return passWord;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
     public String getPhone() {
@@ -75,20 +71,20 @@ public class TblManUser implements Serializable{
         this.email = email;
     }
 
-    public Date getCreated() {
-        return created;
+    public Date getCreatedTime() {
+        return createdTime;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
     }
 
-    public Date getUpdated() {
-        return updated;
+    public Date getUpdatedTime() {
+        return updatedTime;
     }
 
-    public void setUpdated(Date updated) {
-        this.updated = updated;
+    public void setUpdatedTime(Date updatedTime) {
+        this.updatedTime = updatedTime;
     }
 
     public String getName() {
@@ -107,14 +103,6 @@ public class TblManUser implements Serializable{
         this.status = status;
     }
 
-    public String getQq() {
-        return qq;
-    }
-
-    public void setQq(String qq) {
-        this.qq = qq;
-    }
-
     public String getSex() {
         return sex;
     }
@@ -123,19 +111,11 @@ public class TblManUser implements Serializable{
         this.sex = sex;
     }
 
-    public Date getBirthday() {
-        return birthday;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public Date getLastLoginTime() {
-        return lastLoginTime;
-    }
-
-    public void setLastLoginTime(Date lastLoginTime) {
-        this.lastLoginTime = lastLoginTime;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

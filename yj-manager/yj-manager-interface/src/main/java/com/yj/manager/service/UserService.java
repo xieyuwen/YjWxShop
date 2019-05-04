@@ -7,4 +7,6 @@ import com.yj.db.entity.TblManUser;
 public interface UserService {
 	
 	public List<TblManUser> selectUser();
+	
+	public TblManUser userLogin(String userName);
 }

@@ -2,19 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yj.db.dao.TblManUserMapper">
   <resultMap id="BaseResultMap" type="com.yj.db.entity.TblManUser">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="created" jdbcType="TIMESTAMP" property="created" />
-    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="status" jdbcType="VARCHAR" property="status" />
-    <result column="qq" jdbcType="VARCHAR" property="qq" />
-    <result column="sex" jdbcType="VARCHAR" property="sex" />
-    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
-    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="PASS_WORD" jdbcType="VARCHAR" property="passWord" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="SEX" jdbcType="VARCHAR" property="sex" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, username, password, phone, email, created, updated, name, status, qq, sex, birthday, 
-    last_login_time
+    ID, USER_NAME, PASS_WORD, PHONE, EMAIL, CREATED_TIME, UPDATED_TIME, NAME, STATUS, 
+    SEX, REMARK
   </sql>
   <select id="selectByExample" parameterType="com.yj.db.entity.TblManUserExample" resultMap="BaseResultMap">
     select
@@ -84,7 +82,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from tbl_man_user
+    from TBL_MAN_USER
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -95,83 +93,75 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from tbl_man_user
-    where id = #{id,jdbcType=BIGINT}
+    from TBL_MAN_USER
+    where ID = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from tbl_man_user
-    where id = #{id,jdbcType=BIGINT}
+    delete from TBL_MAN_USER
+    where ID = #{id,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.yj.db.entity.TblManUserExample">
-    delete from tbl_man_user
+    delete from TBL_MAN_USER
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.yj.db.entity.TblManUser">
-    insert into tbl_man_user (id, username, password, 
-      phone, email, created, 
-      updated, name, status, 
-      qq, sex, birthday, 
-      last_login_time)
-    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
-      #{updated,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
-      #{qq,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, 
-      #{lastLoginTime,jdbcType=TIMESTAMP})
+    insert into TBL_MAN_USER (ID, USER_NAME, PASS_WORD, 
+      PHONE, EMAIL, CREATED_TIME, 
+      UPDATED_TIME, NAME, STATUS, 
+      SEX, REMARK)
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{passWord,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updatedTime,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yj.db.entity.TblManUser">
-    insert into tbl_man_user
+    insert into TBL_MAN_USER
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        id,
+        ID,
       </if>
-      <if test="username != null">
-        username,
+      <if test="userName != null">
+        USER_NAME,
       </if>
-      <if test="password != null">
-        password,
+      <if test="passWord != null">
+        PASS_WORD,
       </if>
       <if test="phone != null">
-        phone,
+        PHONE,
       </if>
       <if test="email != null">
-        email,
+        EMAIL,
       </if>
-      <if test="created != null">
-        created,
+      <if test="createdTime != null">
+        CREATED_TIME,
       </if>
-      <if test="updated != null">
-        updated,
+      <if test="updatedTime != null">
+        UPDATED_TIME,
       </if>
       <if test="name != null">
-        name,
+        NAME,
       </if>
       <if test="status != null">
-        status,
-      </if>
-      <if test="qq != null">
-        qq,
+        STATUS,
       </if>
       <if test="sex != null">
-        sex,
+        SEX,
       </if>
-      <if test="birthday != null">
-        birthday,
-      </if>
-      <if test="lastLoginTime != null">
-        last_login_time,
+      <if test="remark != null">
+        REMARK,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
+      <if test="passWord != null">
+        #{passWord,jdbcType=VARCHAR},
       </if>
       <if test="phone != null">
         #{phone,jdbcType=VARCHAR},
@@ -179,11 +169,11 @@
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>
-      <if test="created != null">
-        #{created,jdbcType=TIMESTAMP},
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updated != null">
-        #{updated,jdbcType=TIMESTAMP},
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -191,67 +181,55 @@
       <if test="status != null">
         #{status,jdbcType=VARCHAR},
       </if>
-      <if test="qq != null">
-        #{qq,jdbcType=VARCHAR},
-      </if>
       <if test="sex != null">
         #{sex,jdbcType=VARCHAR},
       </if>
-      <if test="birthday != null">
-        #{birthday,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastLoginTime != null">
-        #{lastLoginTime,jdbcType=TIMESTAMP},
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.yj.db.entity.TblManUserExample" resultType="java.lang.Long">
-    select count(*) from tbl_man_user
+    select count(*) from TBL_MAN_USER
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update tbl_man_user
+    update TBL_MAN_USER
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
+        ID = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.username != null">
-        username = #{record.username,jdbcType=VARCHAR},
+      <if test="record.userName != null">
+        USER_NAME = #{record.userName,jdbcType=VARCHAR},
       </if>
-      <if test="record.password != null">
-        password = #{record.password,jdbcType=VARCHAR},
+      <if test="record.passWord != null">
+        PASS_WORD = #{record.passWord,jdbcType=VARCHAR},
       </if>
       <if test="record.phone != null">
-        phone = #{record.phone,jdbcType=VARCHAR},
+        PHONE = #{record.phone,jdbcType=VARCHAR},
       </if>
       <if test="record.email != null">
-        email = #{record.email,jdbcType=VARCHAR},
+        EMAIL = #{record.email,jdbcType=VARCHAR},
       </if>
-      <if test="record.created != null">
-        created = #{record.created,jdbcType=TIMESTAMP},
+      <if test="record.createdTime != null">
+        CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.updated != null">
-        updated = #{record.updated,jdbcType=TIMESTAMP},
+      <if test="record.updatedTime != null">
+        UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
+        NAME = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
-        status = #{record.status,jdbcType=VARCHAR},
-      </if>
-      <if test="record.qq != null">
-        qq = #{record.qq,jdbcType=VARCHAR},
+        STATUS = #{record.status,jdbcType=VARCHAR},
       </if>
       <if test="record.sex != null">
-        sex = #{record.sex,jdbcType=VARCHAR},
+        SEX = #{record.sex,jdbcType=VARCHAR},
       </if>
-      <if test="record.birthday != null">
-        birthday = #{record.birthday,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.lastLoginTime != null">
-        last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+      <if test="record.remark != null">
+        REMARK = #{record.remark,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -259,80 +237,70 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update tbl_man_user
-    set id = #{record.id,jdbcType=BIGINT},
-      username = #{record.username,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      phone = #{record.phone,jdbcType=VARCHAR},
-      email = #{record.email,jdbcType=VARCHAR},
-      created = #{record.created,jdbcType=TIMESTAMP},
-      updated = #{record.updated,jdbcType=TIMESTAMP},
-      name = #{record.name,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=VARCHAR},
-      qq = #{record.qq,jdbcType=VARCHAR},
-      sex = #{record.sex,jdbcType=VARCHAR},
-      birthday = #{record.birthday,jdbcType=TIMESTAMP},
-      last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP}
+    update TBL_MAN_USER
+    set ID = #{record.id,jdbcType=BIGINT},
+      USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      PASS_WORD = #{record.passWord,jdbcType=VARCHAR},
+      PHONE = #{record.phone,jdbcType=VARCHAR},
+      EMAIL = #{record.email,jdbcType=VARCHAR},
+      CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      SEX = #{record.sex,jdbcType=VARCHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.yj.db.entity.TblManUser">
-    update tbl_man_user
+    update TBL_MAN_USER
     <set>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
+      <if test="passWord != null">
+        PASS_WORD = #{passWord,jdbcType=VARCHAR},
       </if>
       <if test="phone != null">
-        phone = #{phone,jdbcType=VARCHAR},
+        PHONE = #{phone,jdbcType=VARCHAR},
       </if>
       <if test="email != null">
-        email = #{email,jdbcType=VARCHAR},
+        EMAIL = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="created != null">
-        created = #{created,jdbcType=TIMESTAMP},
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updated != null">
-        updated = #{updated,jdbcType=TIMESTAMP},
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
       </if>
       <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+        NAME = #{name,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        status = #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="qq != null">
-        qq = #{qq,jdbcType=VARCHAR},
+        STATUS = #{status,jdbcType=VARCHAR},
       </if>
       <if test="sex != null">
-        sex = #{sex,jdbcType=VARCHAR},
+        SEX = #{sex,jdbcType=VARCHAR},
       </if>
-      <if test="birthday != null">
-        birthday = #{birthday,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastLoginTime != null">
-        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where ID = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yj.db.entity.TblManUser">
-    update tbl_man_user
-    set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      created = #{created,jdbcType=TIMESTAMP},
-      updated = #{updated,jdbcType=TIMESTAMP},
-      name = #{name,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR},
-      qq = #{qq,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=VARCHAR},
-      birthday = #{birthday,jdbcType=TIMESTAMP},
-      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
+    update TBL_MAN_USER
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      PASS_WORD = #{passWord,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      NAME = #{name,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -22,4 +22,6 @@ public class UserController {
 	public List<TblManUser> getManUser(){
 		return userService.selectUser();
 	}
+	
+	
 }
