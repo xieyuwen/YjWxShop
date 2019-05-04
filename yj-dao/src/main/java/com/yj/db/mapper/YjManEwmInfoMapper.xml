@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yj.db.dao.YjManEwmInfoMapper">
+  <resultMap id="BaseResultMap" type="com.yj.db.entity.YjManEwmInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="PIC_URL" jdbcType="VARCHAR" property="picUrl" />
+    <result column="ORDER_EWM" jdbcType="VARCHAR" property="orderEwm" />
+    <result column="IS_PRINT" jdbcType="VARCHAR" property="isPrint" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, PIC_URL, ORDER_EWM, IS_PRINT
+  </sql>
+  <select id="selectByExample" parameterType="com.yj.db.entity.YjManEwmInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from YJ_MAN_EWM_INFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from YJ_MAN_EWM_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from YJ_MAN_EWM_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yj.db.entity.YjManEwmInfoExample">
+    delete from YJ_MAN_EWM_INFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yj.db.entity.YjManEwmInfo">
+    insert into YJ_MAN_EWM_INFO (ID, PIC_URL, ORDER_EWM, 
+      IS_PRINT)
+    values (#{id,jdbcType=INTEGER}, #{picUrl,jdbcType=VARCHAR}, #{orderEwm,jdbcType=VARCHAR}, 
+      #{isPrint,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yj.db.entity.YjManEwmInfo">
+    insert into YJ_MAN_EWM_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="picUrl != null">
+        PIC_URL,
+      </if>
+      <if test="orderEwm != null">
+        ORDER_EWM,
+      </if>
+      <if test="isPrint != null">
+        IS_PRINT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="picUrl != null">
+        #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="orderEwm != null">
+        #{orderEwm,jdbcType=VARCHAR},
+      </if>
+      <if test="isPrint != null">
+        #{isPrint,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yj.db.entity.YjManEwmInfoExample" resultType="java.lang.Long">
+    select count(*) from YJ_MAN_EWM_INFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update YJ_MAN_EWM_INFO
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.picUrl != null">
+        PIC_URL = #{record.picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderEwm != null">
+        ORDER_EWM = #{record.orderEwm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isPrint != null">
+        IS_PRINT = #{record.isPrint,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update YJ_MAN_EWM_INFO
+    set ID = #{record.id,jdbcType=INTEGER},
+      PIC_URL = #{record.picUrl,jdbcType=VARCHAR},
+      ORDER_EWM = #{record.orderEwm,jdbcType=VARCHAR},
+      IS_PRINT = #{record.isPrint,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yj.db.entity.YjManEwmInfo">
+    update YJ_MAN_EWM_INFO
+    <set>
+      <if test="picUrl != null">
+        PIC_URL = #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="orderEwm != null">
+        ORDER_EWM = #{orderEwm,jdbcType=VARCHAR},
+      </if>
+      <if test="isPrint != null">
+        IS_PRINT = #{isPrint,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yj.db.entity.YjManEwmInfo">
+    update YJ_MAN_EWM_INFO
+    set PIC_URL = #{picUrl,jdbcType=VARCHAR},
+      ORDER_EWM = #{orderEwm,jdbcType=VARCHAR},
+      IS_PRINT = #{isPrint,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

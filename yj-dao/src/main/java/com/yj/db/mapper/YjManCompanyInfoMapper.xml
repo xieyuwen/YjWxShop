@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yj.db.dao.YjManCompanyInfoMapper">
+  <resultMap id="BaseResultMap" type="com.yj.db.entity.YjManCompanyInfo">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="COMPANY_NAME" jdbcType="VARCHAR" property="companyName" />
+    <result column="COMPANY_ADDRESS" jdbcType="VARCHAR" property="companyAddress" />
+    <result column="COMPANY_PHONE" jdbcType="VARCHAR" property="companyPhone" />
+    <result column="CONTACT_PHONE" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="MAIN_SELL" jdbcType="VARCHAR" property="mainSell" />
+    <result column="INTRODUCT_SELL" jdbcType="VARCHAR" property="introductSell" />
+    <result column="ADD_DATE" jdbcType="TIMESTAMP" property="addDate" />
+    <result column="APPLY_DATE" jdbcType="TIMESTAMP" property="applyDate" />
+    <result column="CHARGER" jdbcType="VARCHAR" property="charger" />
+    <result column="APPLY_NAME" jdbcType="VARCHAR" property="applyName" />
+    <result column="AGREE_CONTACT" jdbcType="VARCHAR" property="agreeContact" />
+    <result column="CREDIT_CODE" jdbcType="VARCHAR" property="creditCode" />
+    <result column="IF_PASS" jdbcType="CHAR" property="ifPass" />
+    <result column="EXAM_NAME" jdbcType="VARCHAR" property="examName" />
+    <result column="EXAM_TIME" jdbcType="TIMESTAMP" property="examTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, COMPANY_NAME, COMPANY_ADDRESS, COMPANY_PHONE, CONTACT_PHONE, MAIN_SELL, INTRODUCT_SELL, 
+    ADD_DATE, APPLY_DATE, CHARGER, APPLY_NAME, AGREE_CONTACT, CREDIT_CODE, IF_PASS, EXAM_NAME, 
+    EXAM_TIME
+  </sql>
+  <select id="selectByExample" parameterType="com.yj.db.entity.YjManCompanyInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from YJ_MAN_COMPANY_INFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from YJ_MAN_COMPANY_INFO
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from YJ_MAN_COMPANY_INFO
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yj.db.entity.YjManCompanyInfoExample">
+    delete from YJ_MAN_COMPANY_INFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yj.db.entity.YjManCompanyInfo">
+    insert into YJ_MAN_COMPANY_INFO (ID, COMPANY_NAME, COMPANY_ADDRESS, 
+      COMPANY_PHONE, CONTACT_PHONE, MAIN_SELL, 
+      INTRODUCT_SELL, ADD_DATE, APPLY_DATE, 
+      CHARGER, APPLY_NAME, AGREE_CONTACT, 
+      CREDIT_CODE, IF_PASS, EXAM_NAME, 
+      EXAM_TIME)
+    values (#{id,jdbcType=BIGINT}, #{companyName,jdbcType=VARCHAR}, #{companyAddress,jdbcType=VARCHAR}, 
+      #{companyPhone,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{mainSell,jdbcType=VARCHAR}, 
+      #{introductSell,jdbcType=VARCHAR}, #{addDate,jdbcType=TIMESTAMP}, #{applyDate,jdbcType=TIMESTAMP}, 
+      #{charger,jdbcType=VARCHAR}, #{applyName,jdbcType=VARCHAR}, #{agreeContact,jdbcType=VARCHAR}, 
+      #{creditCode,jdbcType=VARCHAR}, #{ifPass,jdbcType=CHAR}, #{examName,jdbcType=VARCHAR}, 
+      #{examTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yj.db.entity.YjManCompanyInfo">
+    insert into YJ_MAN_COMPANY_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="companyName != null">
+        COMPANY_NAME,
+      </if>
+      <if test="companyAddress != null">
+        COMPANY_ADDRESS,
+      </if>
+      <if test="companyPhone != null">
+        COMPANY_PHONE,
+      </if>
+      <if test="contactPhone != null">
+        CONTACT_PHONE,
+      </if>
+      <if test="mainSell != null">
+        MAIN_SELL,
+      </if>
+      <if test="introductSell != null">
+        INTRODUCT_SELL,
+      </if>
+      <if test="addDate != null">
+        ADD_DATE,
+      </if>
+      <if test="applyDate != null">
+        APPLY_DATE,
+      </if>
+      <if test="charger != null">
+        CHARGER,
+      </if>
+      <if test="applyName != null">
+        APPLY_NAME,
+      </if>
+      <if test="agreeContact != null">
+        AGREE_CONTACT,
+      </if>
+      <if test="creditCode != null">
+        CREDIT_CODE,
+      </if>
+      <if test="ifPass != null">
+        IF_PASS,
+      </if>
+      <if test="examName != null">
+        EXAM_NAME,
+      </if>
+      <if test="examTime != null">
+        EXAM_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null">
+        #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhone != null">
+        #{companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="mainSell != null">
+        #{mainSell,jdbcType=VARCHAR},
+      </if>
+      <if test="introductSell != null">
+        #{introductSell,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        #{addDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyDate != null">
+        #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="charger != null">
+        #{charger,jdbcType=VARCHAR},
+      </if>
+      <if test="applyName != null">
+        #{applyName,jdbcType=VARCHAR},
+      </if>
+      <if test="agreeContact != null">
+        #{agreeContact,jdbcType=VARCHAR},
+      </if>
+      <if test="creditCode != null">
+        #{creditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ifPass != null">
+        #{ifPass,jdbcType=CHAR},
+      </if>
+      <if test="examName != null">
+        #{examName,jdbcType=VARCHAR},
+      </if>
+      <if test="examTime != null">
+        #{examTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yj.db.entity.YjManCompanyInfoExample" resultType="java.lang.Long">
+    select count(*) from YJ_MAN_COMPANY_INFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update YJ_MAN_COMPANY_INFO
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.companyName != null">
+        COMPANY_NAME = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyAddress != null">
+        COMPANY_ADDRESS = #{record.companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyPhone != null">
+        COMPANY_PHONE = #{record.companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactPhone != null">
+        CONTACT_PHONE = #{record.contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainSell != null">
+        MAIN_SELL = #{record.mainSell,jdbcType=VARCHAR},
+      </if>
+      <if test="record.introductSell != null">
+        INTRODUCT_SELL = #{record.introductSell,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addDate != null">
+        ADD_DATE = #{record.addDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.applyDate != null">
+        APPLY_DATE = #{record.applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.charger != null">
+        CHARGER = #{record.charger,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyName != null">
+        APPLY_NAME = #{record.applyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agreeContact != null">
+        AGREE_CONTACT = #{record.agreeContact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creditCode != null">
+        CREDIT_CODE = #{record.creditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifPass != null">
+        IF_PASS = #{record.ifPass,jdbcType=CHAR},
+      </if>
+      <if test="record.examName != null">
+        EXAM_NAME = #{record.examName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examTime != null">
+        EXAM_TIME = #{record.examTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update YJ_MAN_COMPANY_INFO
+    set ID = #{record.id,jdbcType=BIGINT},
+      COMPANY_NAME = #{record.companyName,jdbcType=VARCHAR},
+      COMPANY_ADDRESS = #{record.companyAddress,jdbcType=VARCHAR},
+      COMPANY_PHONE = #{record.companyPhone,jdbcType=VARCHAR},
+      CONTACT_PHONE = #{record.contactPhone,jdbcType=VARCHAR},
+      MAIN_SELL = #{record.mainSell,jdbcType=VARCHAR},
+      INTRODUCT_SELL = #{record.introductSell,jdbcType=VARCHAR},
+      ADD_DATE = #{record.addDate,jdbcType=TIMESTAMP},
+      APPLY_DATE = #{record.applyDate,jdbcType=TIMESTAMP},
+      CHARGER = #{record.charger,jdbcType=VARCHAR},
+      APPLY_NAME = #{record.applyName,jdbcType=VARCHAR},
+      AGREE_CONTACT = #{record.agreeContact,jdbcType=VARCHAR},
+      CREDIT_CODE = #{record.creditCode,jdbcType=VARCHAR},
+      IF_PASS = #{record.ifPass,jdbcType=CHAR},
+      EXAM_NAME = #{record.examName,jdbcType=VARCHAR},
+      EXAM_TIME = #{record.examTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yj.db.entity.YjManCompanyInfo">
+    update YJ_MAN_COMPANY_INFO
+    <set>
+      <if test="companyName != null">
+        COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null">
+        COMPANY_ADDRESS = #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhone != null">
+        COMPANY_PHONE = #{companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="mainSell != null">
+        MAIN_SELL = #{mainSell,jdbcType=VARCHAR},
+      </if>
+      <if test="introductSell != null">
+        INTRODUCT_SELL = #{introductSell,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        ADD_DATE = #{addDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyDate != null">
+        APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="charger != null">
+        CHARGER = #{charger,jdbcType=VARCHAR},
+      </if>
+      <if test="applyName != null">
+        APPLY_NAME = #{applyName,jdbcType=VARCHAR},
+      </if>
+      <if test="agreeContact != null">
+        AGREE_CONTACT = #{agreeContact,jdbcType=VARCHAR},
+      </if>
+      <if test="creditCode != null">
+        CREDIT_CODE = #{creditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ifPass != null">
+        IF_PASS = #{ifPass,jdbcType=CHAR},
+      </if>
+      <if test="examName != null">
+        EXAM_NAME = #{examName,jdbcType=VARCHAR},
+      </if>
+      <if test="examTime != null">
+        EXAM_TIME = #{examTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yj.db.entity.YjManCompanyInfo">
+    update YJ_MAN_COMPANY_INFO
+    set COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      COMPANY_ADDRESS = #{companyAddress,jdbcType=VARCHAR},
+      COMPANY_PHONE = #{companyPhone,jdbcType=VARCHAR},
+      CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      MAIN_SELL = #{mainSell,jdbcType=VARCHAR},
+      INTRODUCT_SELL = #{introductSell,jdbcType=VARCHAR},
+      ADD_DATE = #{addDate,jdbcType=TIMESTAMP},
+      APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      CHARGER = #{charger,jdbcType=VARCHAR},
+      APPLY_NAME = #{applyName,jdbcType=VARCHAR},
+      AGREE_CONTACT = #{agreeContact,jdbcType=VARCHAR},
+      CREDIT_CODE = #{creditCode,jdbcType=VARCHAR},
+      IF_PASS = #{ifPass,jdbcType=CHAR},
+      EXAM_NAME = #{examName,jdbcType=VARCHAR},
+      EXAM_TIME = #{examTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

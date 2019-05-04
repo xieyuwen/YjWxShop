@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yj.db.dao.YjManProductModelMapper">
+  <resultMap id="BaseResultMap" type="com.yj.db.entity.YjManProductModel">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+    <result column="PRODUCT_ORG_PRICE" jdbcType="VARCHAR" property="productOrgPrice" />
+    <result column="PRODUCT_PRICE" jdbcType="VARCHAR" property="productPrice" />
+    <result column="USE_TYPE" jdbcType="CHAR" property="useType" />
+    <result column="USE_BEGIN_TIME" jdbcType="TIMESTAMP" property="useBeginTime" />
+    <result column="USE_END_TIME" jdbcType="TIMESTAMP" property="useEndTime" />
+    <result column="LIMIT_DAY" jdbcType="VARCHAR" property="limitDay" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, PRODUCT_ID, PRODUCT_ORG_PRICE, PRODUCT_PRICE, USE_TYPE, USE_BEGIN_TIME, USE_END_TIME, 
+    LIMIT_DAY
+  </sql>
+  <select id="selectByExample" parameterType="com.yj.db.entity.YjManProductModelExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from YJ_MAN_PRODUCT_MODEL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from YJ_MAN_PRODUCT_MODEL
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from YJ_MAN_PRODUCT_MODEL
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yj.db.entity.YjManProductModelExample">
+    delete from YJ_MAN_PRODUCT_MODEL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yj.db.entity.YjManProductModel">
+    insert into YJ_MAN_PRODUCT_MODEL (ID, PRODUCT_ID, PRODUCT_ORG_PRICE, 
+      PRODUCT_PRICE, USE_TYPE, USE_BEGIN_TIME, 
+      USE_END_TIME, LIMIT_DAY)
+    values (#{id,jdbcType=BIGINT}, #{productId,jdbcType=VARCHAR}, #{productOrgPrice,jdbcType=VARCHAR}, 
+      #{productPrice,jdbcType=VARCHAR}, #{useType,jdbcType=CHAR}, #{useBeginTime,jdbcType=TIMESTAMP}, 
+      #{useEndTime,jdbcType=TIMESTAMP}, #{limitDay,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yj.db.entity.YjManProductModel">
+    insert into YJ_MAN_PRODUCT_MODEL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="productOrgPrice != null">
+        PRODUCT_ORG_PRICE,
+      </if>
+      <if test="productPrice != null">
+        PRODUCT_PRICE,
+      </if>
+      <if test="useType != null">
+        USE_TYPE,
+      </if>
+      <if test="useBeginTime != null">
+        USE_BEGIN_TIME,
+      </if>
+      <if test="useEndTime != null">
+        USE_END_TIME,
+      </if>
+      <if test="limitDay != null">
+        LIMIT_DAY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productOrgPrice != null">
+        #{productOrgPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null">
+        #{productPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="useType != null">
+        #{useType,jdbcType=CHAR},
+      </if>
+      <if test="useBeginTime != null">
+        #{useBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useEndTime != null">
+        #{useEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="limitDay != null">
+        #{limitDay,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yj.db.entity.YjManProductModelExample" resultType="java.lang.Long">
+    select count(*) from YJ_MAN_PRODUCT_MODEL
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update YJ_MAN_PRODUCT_MODEL
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.productId != null">
+        PRODUCT_ID = #{record.productId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productOrgPrice != null">
+        PRODUCT_ORG_PRICE = #{record.productOrgPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productPrice != null">
+        PRODUCT_PRICE = #{record.productPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useType != null">
+        USE_TYPE = #{record.useType,jdbcType=CHAR},
+      </if>
+      <if test="record.useBeginTime != null">
+        USE_BEGIN_TIME = #{record.useBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.useEndTime != null">
+        USE_END_TIME = #{record.useEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.limitDay != null">
+        LIMIT_DAY = #{record.limitDay,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update YJ_MAN_PRODUCT_MODEL
+    set ID = #{record.id,jdbcType=BIGINT},
+      PRODUCT_ID = #{record.productId,jdbcType=VARCHAR},
+      PRODUCT_ORG_PRICE = #{record.productOrgPrice,jdbcType=VARCHAR},
+      PRODUCT_PRICE = #{record.productPrice,jdbcType=VARCHAR},
+      USE_TYPE = #{record.useType,jdbcType=CHAR},
+      USE_BEGIN_TIME = #{record.useBeginTime,jdbcType=TIMESTAMP},
+      USE_END_TIME = #{record.useEndTime,jdbcType=TIMESTAMP},
+      LIMIT_DAY = #{record.limitDay,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yj.db.entity.YjManProductModel">
+    update YJ_MAN_PRODUCT_MODEL
+    <set>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productOrgPrice != null">
+        PRODUCT_ORG_PRICE = #{productOrgPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null">
+        PRODUCT_PRICE = #{productPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="useType != null">
+        USE_TYPE = #{useType,jdbcType=CHAR},
+      </if>
+      <if test="useBeginTime != null">
+        USE_BEGIN_TIME = #{useBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useEndTime != null">
+        USE_END_TIME = #{useEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="limitDay != null">
+        LIMIT_DAY = #{limitDay,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yj.db.entity.YjManProductModel">
+    update YJ_MAN_PRODUCT_MODEL
+    set PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      PRODUCT_ORG_PRICE = #{productOrgPrice,jdbcType=VARCHAR},
+      PRODUCT_PRICE = #{productPrice,jdbcType=VARCHAR},
+      USE_TYPE = #{useType,jdbcType=CHAR},
+      USE_BEGIN_TIME = #{useBeginTime,jdbcType=TIMESTAMP},
+      USE_END_TIME = #{useEndTime,jdbcType=TIMESTAMP},
+      LIMIT_DAY = #{limitDay,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yj.db.dao.YjManProductInfoMapper">
+  <resultMap id="BaseResultMap" type="com.yj.db.entity.YjManProductInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="COMPANY_ID" jdbcType="VARCHAR" property="companyId" />
+    <result column="PIC_ADDRESS" jdbcType="VARCHAR" property="picAddress" />
+    <result column="SELL_POINT" jdbcType="VARCHAR" property="sellPoint" />
+    <result column="PRODUCT_DETAIL_ID" jdbcType="VARCHAR" property="productDetailId" />
+    <result column="PRODUCT_TYPE" jdbcType="VARCHAR" property="productType" />
+    <result column="PRODUCT_SKU_ID" jdbcType="VARCHAR" property="productSkuId" />
+    <result column="EXAM_PASS" jdbcType="VARCHAR" property="examPass" />
+    <result column="IF_MARKETABLE" jdbcType="CHAR" property="ifMarketable" />
+    <result column="IF_TAKE_GOODS" jdbcType="CHAR" property="ifTakeGoods" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, PRODUCT_NAME, COMPANY_ID, PIC_ADDRESS, SELL_POINT, PRODUCT_DETAIL_ID, PRODUCT_TYPE, 
+    PRODUCT_SKU_ID, EXAM_PASS, IF_MARKETABLE, IF_TAKE_GOODS, REMARK
+  </sql>
+  <select id="selectByExample" parameterType="com.yj.db.entity.YjManProductInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from YJ_MAN_PRODUCT_INFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from YJ_MAN_PRODUCT_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from YJ_MAN_PRODUCT_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yj.db.entity.YjManProductInfoExample">
+    delete from YJ_MAN_PRODUCT_INFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yj.db.entity.YjManProductInfo">
+    insert into YJ_MAN_PRODUCT_INFO (ID, PRODUCT_NAME, COMPANY_ID, 
+      PIC_ADDRESS, SELL_POINT, PRODUCT_DETAIL_ID, 
+      PRODUCT_TYPE, PRODUCT_SKU_ID, EXAM_PASS, 
+      IF_MARKETABLE, IF_TAKE_GOODS, REMARK
+      )
+    values (#{id,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, 
+      #{picAddress,jdbcType=VARCHAR}, #{sellPoint,jdbcType=VARCHAR}, #{productDetailId,jdbcType=VARCHAR}, 
+      #{productType,jdbcType=VARCHAR}, #{productSkuId,jdbcType=VARCHAR}, #{examPass,jdbcType=VARCHAR}, 
+      #{ifMarketable,jdbcType=CHAR}, #{ifTakeGoods,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yj.db.entity.YjManProductInfo">
+    insert into YJ_MAN_PRODUCT_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME,
+      </if>
+      <if test="companyId != null">
+        COMPANY_ID,
+      </if>
+      <if test="picAddress != null">
+        PIC_ADDRESS,
+      </if>
+      <if test="sellPoint != null">
+        SELL_POINT,
+      </if>
+      <if test="productDetailId != null">
+        PRODUCT_DETAIL_ID,
+      </if>
+      <if test="productType != null">
+        PRODUCT_TYPE,
+      </if>
+      <if test="productSkuId != null">
+        PRODUCT_SKU_ID,
+      </if>
+      <if test="examPass != null">
+        EXAM_PASS,
+      </if>
+      <if test="ifMarketable != null">
+        IF_MARKETABLE,
+      </if>
+      <if test="ifTakeGoods != null">
+        IF_TAKE_GOODS,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="picAddress != null">
+        #{picAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sellPoint != null">
+        #{sellPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetailId != null">
+        #{productDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="productSkuId != null">
+        #{productSkuId,jdbcType=VARCHAR},
+      </if>
+      <if test="examPass != null">
+        #{examPass,jdbcType=VARCHAR},
+      </if>
+      <if test="ifMarketable != null">
+        #{ifMarketable,jdbcType=CHAR},
+      </if>
+      <if test="ifTakeGoods != null">
+        #{ifTakeGoods,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yj.db.entity.YjManProductInfoExample" resultType="java.lang.Long">
+    select count(*) from YJ_MAN_PRODUCT_INFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update YJ_MAN_PRODUCT_INFO
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.productName != null">
+        PRODUCT_NAME = #{record.productName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null">
+        COMPANY_ID = #{record.companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picAddress != null">
+        PIC_ADDRESS = #{record.picAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellPoint != null">
+        SELL_POINT = #{record.sellPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productDetailId != null">
+        PRODUCT_DETAIL_ID = #{record.productDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productType != null">
+        PRODUCT_TYPE = #{record.productType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productSkuId != null">
+        PRODUCT_SKU_ID = #{record.productSkuId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examPass != null">
+        EXAM_PASS = #{record.examPass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifMarketable != null">
+        IF_MARKETABLE = #{record.ifMarketable,jdbcType=CHAR},
+      </if>
+      <if test="record.ifTakeGoods != null">
+        IF_TAKE_GOODS = #{record.ifTakeGoods,jdbcType=CHAR},
+      </if>
+      <if test="record.remark != null">
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update YJ_MAN_PRODUCT_INFO
+    set ID = #{record.id,jdbcType=INTEGER},
+      PRODUCT_NAME = #{record.productName,jdbcType=VARCHAR},
+      COMPANY_ID = #{record.companyId,jdbcType=VARCHAR},
+      PIC_ADDRESS = #{record.picAddress,jdbcType=VARCHAR},
+      SELL_POINT = #{record.sellPoint,jdbcType=VARCHAR},
+      PRODUCT_DETAIL_ID = #{record.productDetailId,jdbcType=VARCHAR},
+      PRODUCT_TYPE = #{record.productType,jdbcType=VARCHAR},
+      PRODUCT_SKU_ID = #{record.productSkuId,jdbcType=VARCHAR},
+      EXAM_PASS = #{record.examPass,jdbcType=VARCHAR},
+      IF_MARKETABLE = #{record.ifMarketable,jdbcType=CHAR},
+      IF_TAKE_GOODS = #{record.ifTakeGoods,jdbcType=CHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yj.db.entity.YjManProductInfo">
+    update YJ_MAN_PRODUCT_INFO
+    <set>
+      <if test="productName != null">
+        PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        COMPANY_ID = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="picAddress != null">
+        PIC_ADDRESS = #{picAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sellPoint != null">
+        SELL_POINT = #{sellPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="productDetailId != null">
+        PRODUCT_DETAIL_ID = #{productDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="productSkuId != null">
+        PRODUCT_SKU_ID = #{productSkuId,jdbcType=VARCHAR},
+      </if>
+      <if test="examPass != null">
+        EXAM_PASS = #{examPass,jdbcType=VARCHAR},
+      </if>
+      <if test="ifMarketable != null">
+        IF_MARKETABLE = #{ifMarketable,jdbcType=CHAR},
+      </if>
+      <if test="ifTakeGoods != null">
+        IF_TAKE_GOODS = #{ifTakeGoods,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yj.db.entity.YjManProductInfo">
+    update YJ_MAN_PRODUCT_INFO
+    set PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      COMPANY_ID = #{companyId,jdbcType=VARCHAR},
+      PIC_ADDRESS = #{picAddress,jdbcType=VARCHAR},
+      SELL_POINT = #{sellPoint,jdbcType=VARCHAR},
+      PRODUCT_DETAIL_ID = #{productDetailId,jdbcType=VARCHAR},
+      PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      PRODUCT_SKU_ID = #{productSkuId,jdbcType=VARCHAR},
+      EXAM_PASS = #{examPass,jdbcType=VARCHAR},
+      IF_MARKETABLE = #{ifMarketable,jdbcType=CHAR},
+      IF_TAKE_GOODS = #{ifTakeGoods,jdbcType=CHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

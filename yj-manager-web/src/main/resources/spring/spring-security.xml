@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean:beans xmlns="http://www.springframework.org/schema/security"
+			xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+			xmlns:bean="http://www.springframework.org/schema/beans"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://www.springframework.org/schema/security
+			http://www.springframework.org/schema/security/spring-security.xsd
+			http://code.alibabatech.com/schema/dubbo
+			http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+			http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<http pattern="/login.html" security="none"></http>
+	<http pattern="/login-error.html" security="none"></http>
+	<http pattern="/css/**" security="none"></http>
+	<http pattern="/img/**" security="none"></http>
+	<http pattern="/js/**" security="none"></http>
+	<http pattern="/plugins/**" security="none"></http>
+	<http>
+		<intercept-url pattern="/*" access="hasRole('ROLE_USER')" />
+		<form-login login-page="/login.html" default-target-url="/admin/index.html"
+		authentication-failure-url="/login-error.html"/>
+		<csrf disabled="true"/>
+		<headers>
+			<frame-options policy="SAMEORIGIN"/>
+		</headers>
+		<logout logout-url="" logout-success-url="/login.html"/>
+	</http>
+	<dubbo:application name="yj-manager-web" />
+	<dubbo:registry address="zookeeper://106.12.219.106:2181"/>
+	<dubbo:reference id="userService"
+		interface="com.yj.manager.service.UserService" >
+	</dubbo:reference>
+	<bean:bean id="userDetailService" class="com.yj.manager.login.UserDetailServiceImpl">
+		<bean:property name="userService" ref="userService"></bean:property>
+	</bean:bean>
+	<!-- 认证管理器 -->
+	<authentication-manager>
+		<authentication-provider user-service-ref='userDetailService'></authentication-provider>
+	</authentication-manager>
+</bean:beans>
