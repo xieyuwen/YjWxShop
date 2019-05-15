@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+    	<meta name="author" content="m.jd.com">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="css/base2013.css" charset="gbk">
+		<link rel="stylesheet" type="text/css" href="css/order2014.src.css" charset="gbk">
+		<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="js/spin.min.js"></script><style></style>
+		<!-- 对url处理 -->
+		<script type="text/javascript" src="js/ojbUrl.js"></script>
+		<!--数据埋点-->
+		<script type="text/javascript" src="js/pingJS.1.0.js"></script>
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<!--通用头尾css js add by lizhenyou 2015-4-17-->
+		<link rel="stylesheet" type="text/css" href="css/header.css" charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<body id="body">
+	<a name="top"></a>
+	<header>
+		<!-- 通用头 div -->
+		<div id="m_common_header" style="min-height:45px;"><header class="jd-header">  
+			<div class="jd-header-bar">      
+				<div id="m_common_header_goback" class="jd-header-icon-back">
+					<a href=""><span></span></a>
+				</div>        
+				<div class="jd-header-title" style="font-weight: bold">商家入驻申请</div>        
+			</div>  
+			<ul id="m_common_header_shortcut" class="jd-header-shortcut" style="display: none;">        <li id="m_common_header_shortcut_m_index">            <a class="J_ping" report-eventid="MCommonHead_home" report-eventparam="" page_name="" href="">                <span class="shortcut-home"></span>                <strong>首页</strong>            </a>        </li>        <li class="J_ping" report-eventid="MCommonHead_CategorySearch" report-eventparam="" page_name="" id="m_common_header_shortcut_category_search">            <a href="">                <span class="shortcut-categories"></span>                <strong>分类搜索</strong>            </a>        </li>        <li class="J_ping" report-eventid="MCommonHead_Cart" report-eventparam="" page_name="" id="m_common_header_shortcut_p_cart">            <a href="" id="html5_cart">                <span class="shortcut-cart"></span>                <strong>购物车</strong>            </a>        </li>        <li id="m_common_header_shortcut_h_home" class=" current">            <a class="J_ping" report-eventid="MCommonHead_MYJD" report-eventparam="" page_name="" href="">                <span class="shortcut-my-account"></span>                <strong>我的京东</strong>            </a>        </li>    </ul></header></div>
+	</header>
+	<input type="hidden" id="orderId" name="orderId" value="9941788290">
+	<input type="hidden" id="sid" name="sid" value="">
+	<div class="wrap">
+			<section class="order-con">
+				<ul class="order-list">
+					<form id="businessApply">
+					<li>
+						<div class="order-box">
+								<table style="margin-top: 10px;text-align: center;" >
+									<tr style="height: 50px;">
+										<td style="text-align: right;">公司名称：</td>
+										<td ><input type="text" class="form-control"name="companyName"  placeholder="公司名称" style="width: 100%;"></td>
+									</tr>
+									<tr  style="height: 50px;">
+										<td style="text-align: right;">公司地址：</td>
+										<td ><input type="text" class="form-control" name="companyAddress"  placeholder="公司地址" style="width: 100%;"></td>
+									</tr>
+									<tr  style="height: 50px;">
+										<td style="text-align: right;">公司电话：</td>
+										<td><input type="text" class="form-control" name="companyPhone"  placeholder="公司电话" style="width: 100%;"></td>
+									</tr>
+									<tr  style="height: 50px;">
+										<td style="text-align: right;">联系人电话：</td>
+										<td><input type="text" class="form-control"  name="contactPhone" placeholder="联系人电话" style="width: 100%;"></td>
+									</tr>
+									<tr  style="height: 50px;">
+										<td style="text-align: right;">社会信用代码：</td>
+										<td><input type="text" class="form-control"  name="creditCode" placeholder="社会信用代码" style="width: 100%;"></td>
+									</tr>
+									<tr  style="height: 50px;">
+										<td style="text-align: right;">法人代表：</td>
+										<td><input type="text" class="form-control" name="charger"  placeholder="法人代表" style="width: 100%;"></td>
+									</tr>
+									<tr  style="height: 50px;">
+										<td style="text-align: right;">主营业务：</td>
+										<td><input type="text" class="form-control"  name="mainSell" placeholder="主营业务" style="width: 100%;"></td>
+									</tr>
+									<tr  style="height: 100px;width: 100%;">
+										<td style="text-align: right;">业务介绍：</td>
+										<td>
+											<textarea  class="form-control" name="introductSell"  placeholder="业务介绍" rows="3"></textarea>
+										</td>
+									</tr>
+								</table>
+						</div>
+					</li>
+					<li>
+						<div class="order-box" style="text-align: left;">
+							<label>
+						      <input type="checkbox" id="ifApproval" name="agreeContact" >您是否同意入驻协议
+						    </label>
+						</div>
+					</li>
+					</form>
+				</ul>
+			</section>
+			<button type="button" class="btn btn-success" style="width: 100%;" onclick="subBussinessInfo()">提交</button>
+		</div>
+
+	<script type="text/javascript">
+	$(function(){
+		
+	});
+	function subBussinessInfo(){
+		var ifApproval = $('input[name="agreeContact"]:checked').val();
+		if(ifApproval == 'on'){
+			var data = $("#businessApply").serialize();
+			data= decodeURIComponent(data,true);//防止中文乱码
+             var jsondata=DataDeal.formToJson(data);//转化为json
+			alert(jsondata)
+			$.ajax({
+				type:"post",
+				url:"/bussinessTakePartyIn/addBussinessApplyInfo",
+				async:true,
+				dataType:'json',
+				contentType: 'application/json',
+				data:jsondata,
+				success:function(data){
+					if(data.code == 200){
+						alert(data.data)
+					}else{
+						alert("申请失败")
+					}
+				},error:function(data){
+					
+				}
+			});
+		}else{
+			alert("请同意入驻协议");
+		}
+	}
+	var DataDeal = {
+        //将从form中通过$('#refer').serialize()获取的值转成json
+        formToJson: function (data) {
+            data=data.replace(/&/g,"\",\"");
+            data=data.replace(/=/g,"\":\"");
+            data="{\""+data+"\"}";
+            return data;
+        }
+    };
+
+	</script>		
+</body>
+</html><!--LHC-2015-09-21-->

@@ -138,18 +138,27 @@ public class WxUtil {
     */
    public static Menu getMenu(){
 	   Menu menu = new Menu();
-	   ClickMenuButton clickMenuButton1 = new ClickMenuButton();
+	   ViewMenuButton clickMenuButton1 = new ViewMenuButton();
 	   clickMenuButton1.setName("商城福利");
-	   clickMenuButton1.setType("click");
-	   clickMenuButton1.setKey("index_shop_profit");
-	   ClickMenuButton clickMenuButton2 = new ClickMenuButton();
+	   clickMenuButton1.setType("view");
+	   clickMenuButton1.setUrl("http://106.12.219.106/yj-shop-web/index.html");
+	   ViewMenuButton clickMenuButton2 = new ViewMenuButton();
 	   clickMenuButton2.setName("燕江科技");
-	   clickMenuButton2.setType("click");
-	   clickMenuButton2.setKey("index_shop_company");
-	   ViewMenuButton clickMenuButton3 = new ViewMenuButton();
-	   clickMenuButton3.setName("服务中心");
-	   clickMenuButton3.setType("view");
-	   clickMenuButton3.setUrl("http://106.12.219.106/yj-shop-web/index.html");
+	   clickMenuButton2.setType("view");
+	   clickMenuButton2.setUrl("http://106.12.219.106/yj-shop-web/company.html");
+	   ClickMenuButton clickMenuButton3 = new ClickMenuButton();
+	   clickMenuButton3.setName("客户服务");
+	   clickMenuButton3.setKey("custom_service");
+	   ViewMenuButton clickMenuButton4 = new ViewMenuButton();
+	   clickMenuButton4.setName("客户服务");
+	   clickMenuButton4.setType("view");
+	   clickMenuButton4.setUrl("http://106.12.219.106/yj-shop-web/service.html");
+	   ViewMenuButton clickMenuButton5 = new ViewMenuButton();
+	   clickMenuButton5.setName("商家入驻申请");
+	   clickMenuButton5.setType("view");
+	   clickMenuButton5.setUrl("http://106.12.219.106/yj-shop-web/company/index.html");
+	   MenuButton menuButtons [] = {clickMenuButton4,clickMenuButton5};
+	   clickMenuButton3.setSub_button(menuButtons);
 	   menu.setButton(new MenuButton[]{clickMenuButton1,clickMenuButton2,clickMenuButton3});
 	   return menu;
    }

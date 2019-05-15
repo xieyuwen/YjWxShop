@@ -73,7 +73,7 @@ public class WxAuthority {
 	    	  textMessage.setContent(Content);
 	      }else if(MessageUtil.MESSAGE_EVENT.equals(MsgType)){//事件信息
 	    	  if(MessageUtil.MESSAGE_SUBSCRIBE.equals(weiStrMsg.get("Event"))){//关注公众号消息
-	    		  String welecomeMsg = "欢迎来到燕江欢乐go商城！/n"+"吃、喝、游、玩特价爆款产品时时上新！/n"+"点击菜单栏【在线商城】即可享受~~~";//关注欢迎消息后期后台配制
+	    		  String welecomeMsg = "欢迎来到燕江欢乐go商城!\n"+"吃、喝、游、玩特价爆款产品时时上新！\n"+"点击菜单栏【商城福利】即可享受~~~";//关注欢迎消息后期后台配制
 	    		  textMessage.setContent(welecomeMsg);
 	    	  }
 	      }

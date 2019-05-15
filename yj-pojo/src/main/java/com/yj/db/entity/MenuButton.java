@@ -6,7 +6,7 @@ public class MenuButton {
 	
 	private String name;//菜单标题，不超过16个字节，子菜单不超过60个字节
 	
-	private MenuButton [] menuButton;//调用新增永久素材接口返回的合法media_id
+	private MenuButton [] sub_button;//调用新增永久素材接口返回的合法media_id
 
 	public String getType() {
 		return type;
@@ -24,12 +24,14 @@ public class MenuButton {
 		this.name = name;
 	}
 
-	public MenuButton[] getMenuButton() {
-		return menuButton;
+	public MenuButton[] getSub_button() {
+		return sub_button;
 	}
 
-	public void setMenuButton(MenuButton[] menuButton) {
-		this.menuButton = menuButton;
+	public void setSub_button(MenuButton[] sub_button) {
+		this.sub_button = sub_button;
 	}
+
+	
 	
 }

@@ -41,7 +41,17 @@ public class YjManCompanyInfo implements Serializable{
 
     private Date examTime;
 
-    public Long getId() {
+    @Override
+	public String toString() {
+		return "YjManCompanyInfo [id=" + id + ", companyName=" + companyName + ", companyAddress=" + companyAddress
+				+ ", companyPhone=" + companyPhone + ", contactPhone=" + contactPhone + ", mainSell=" + mainSell
+				+ ", introductSell=" + introductSell + ", addDate=" + addDate + ", applyDate=" + applyDate
+				+ ", charger=" + charger + ", applyName=" + applyName + ", agreeContact=" + agreeContact
+				+ ", creditCode=" + creditCode + ", ifPass=" + ifPass + ", examName=" + examName + ", examTime="
+				+ examTime + "]";
+	}
+
+	public Long getId() {
         return id;
     }
 
